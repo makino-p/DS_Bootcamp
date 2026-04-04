@@ -1,0 +1,137 @@
+📖 Глава 1 — Введение, философия, структура проекта
+Задачи: пока не решать. Просто читать и запустить import this в Python.
+
+📖 Глава 2 — Типы данных
+Задачи из блока 1: 1, 2, 3, 4, 5
+
+📖 Глава 3 — Коллекции (list, tuple, dict, set)
+Задачи из блока 3: 18, 19, 20, 21, 22, 23, 24
+Задачи из блока 11: 48, 49, 50, 51, 52
+
+📖 Глава 4 — Управление потоком (if, for, while, исключения)
+Добавить к предыдущим задачам: 6, 7, 8 (блок 1)
+
+📖 Глава 5 — Функции (лямбды, декораторы, генераторы)
+Задачи из блока 6: 35, 36, 37, 38, 39, 40, 41, 42
+Задачи из блока 7: 43, 44, 45, 46, 47
+
+📖 Глава 6 — Файлы и sys.argv
+Задачи из блока 2: 9, 10, 11, 12, 13, 14, 15, 16, 17
+Задачи из блока 10: 72, 73, 74, 75, 76, 77
+Задачи из блока 13: 88, 89, 90, 91, 92, 93
+
+📖 Глава 7 — ООП
+Задачи из блока 4: 25, 26, 27, 28, 29, 30, 31, 32, 33, 34
+Задачи из блока 12: 83, 84, 85, 86, 87
+
+📖 Глава 8 — Модули, пакеты, pip, venv, logging
+Задачи из блока 5: 53, 54, 55, 56, 57
+Задачи из блока 8: 64, 65, 66, 67, 68, 69, 70, 71
+
+📖 Все главы прочитаны — финальные проекты
+Блок 9 (мини-проекты): 58, 59, 60, 61, 62, 63
+Блок 14 (интеграционные): 94, 95, 96, 97, 98, 99, 100, 101
+
+Совет по работе с каждой задачей: сначала читай условие полностью, потом набрасывай структуру класса на бумаге (какие методы, что принимают, что возвращают), только потом пиши код. И всегда try/except в if __name__ == '__main__'.
+
+import this -- Zen of Python like rule which I should observe while writing code in Python
+
+python3 --version -- For checking version of Python on computer output like this: Python 3.12.3
+
+if '__name__' == '__main__':
+    function_name(function_parameters) -- it is necessary block of code which should be written while using functions
+
+Comments in code: """  This quotes for multi-line comments  """ -- multi-line
+
+print(round(1.57, 1)) --  It is a method of rounding numbers intil numb which you want 
+ 
+print(abs(-1)) --  It is like module in math n whatever nubm you put into it return this number with positive char
+
+print(int(2.7)) --  It remove float part not round! just remove
+
+a = 3 + 2j
+b =  4 - 1j
+com = (a-b)
+print(com.real) -- complex numbers in Python like: real + - /  * ** image(j) 
+
+Строки в Python — неизменяемые последовательности символов Unicode. Это означает, что любая "модификация" строки создаёт новый объект.
+
+raw_string = r'C:\Users\file ' --  обратный слеш не экранирует
+
+string = "Hello" + "World"  -- It is called Concatenation or Конкатенация
+
+repetition = "word" * 5 output: word word word word word word  -- it just repeat word 
+
+# Индексация и срезы:
+word = "Python"
+
+print(word[0])    # P   (с начала)
+
+print(word[-1])   # n   (с конца)
+
+print(word[1:4])  # yth (срез [start:stop])
+
+print(word[::2])  # Pto (каждый 2-й символ)
+
+print(word[::-1]) # nohtyP (разворот строки) -- it is one of the most important and often used it revert word and not only string type variables
+
+
+s = "  Hello, World!  "
+
+
+# Очистка:
+s.strip()         # "Hello, World!" — убрать пробелы по краям and not only spaces it could remove any char which include string
+s.lstrip()        # убрать слева
+s.rstrip()        # убрать справа  -- they both do the same thing but more specific method
+
+
+# Регистр:
+"hello".upper()         # "HELLO" 
+"HELLO".lower()         # "hello"
+
+"hello world".title()   # "Hello World" 
+"hello world".capitalize() # "Hello world" -- diffirenties between title and capitalize is that title() size up all letters in the beginning og the word in long string however capitalize size up only one letter
+
+
+# Поиск:
+"hello".find("ll")      # 2 — индекс первого вхождения
+"hello".count("l")      # 2 — сколько раз встречается -- it is impotant and often used argument
+"hello".startswith("he") # True
+"hello".endswith("lo")   # True
+"hello" in "say hello"   # True -- it is just checking different parts of word
+
+
+
+
+# Разделение и объединение:
+"a,b,c".split(",")       # ["a", "b", "c"]  -- it is used when we need to convert string to list
+",".join(["a","b","c"])  # "a,b,c" -- it is used when we need to convert list to string
+
+
+# Замена:
+"hello".replace("l", "r") # "herro" -- just replacing letter, numbers, or chars in string type variables 
+ 
+
+# Проверки:
+"123".isdigit()   # True 
+"abc".isalpha()   # True
+"abc".isascii()   # True
+"  ".isspace()    # True -- it is a checking chars type
+
+print(f"Hello {variable_name}") -- it is a f-strings we use them while we need combine our variables and string type data
+
+
+# Форматирование чисел:
+print(f"Счёт: {score:.2f}")       # 98.77 (2 знака после точки)
+print(f"Счёт: {score:8.2f}")      # "   98.77" (ширина 8)
+print(f"Число: {1000000:,}")       # 1,000,000 (разделитель тысяч)
+print(f"Hex: {255:#x}")            # 0xff
+print(f"Процент: {0.856:.1%}")     # 85.6%
+
+
+
+print(True + False) -- output: 1; because True = 1 and  False = 0
+
+print(isinstance(42, int)) output: True;  it is a checking type of variable
+
+

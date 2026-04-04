@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python для начинающих</title>
+<style>
+  :root {
+    --blue: #1F4E79;
+    --accent: #2E75B6;
+    --green: #1A6B2E;
+    --dark: #1e1e1e;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --code-bg: #1e1e2e;
+    --task-bg: #fff8f0;
+    --task-border: #c0392b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: #2c2c2c;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1F4E79 0%, #2E75B6 100%);
+    color: white;
+    padding: 48px 24px 36px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2em; margin-bottom: 8px; }
+  .hero p { font-size: 1.1em; opacity: 0.85; }
+  .toc {
+    background: white;
+    margin: 20px 16px;
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .toc h2 { color: var(--blue); margin-bottom: 12px; font-size: 1.1em; }
+  .toc a {
+    display: block;
+    padding: 7px 0;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95em;
+  }
+  .toc a:last-child { border-bottom: none; }
+  .toc a:hover { color: var(--blue); }
+  .section {
+    background: var(--card);
+    margin: 16px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section-header {
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    color: white;
+    padding: 18px 24px;
+  }
+  .section-header h2 { font-size: 1.3em; }
+  .section-body { padding: 20px 24px; }
+  h3 {
+    color: var(--green);
+    font-size: 1.05em;
+    margin: 20px 0 8px;
+    padding-left: 10px;
+    border-left: 3px solid var(--green);
+  }
+  p { margin: 10px 0; color: #333; }
+  pre {
+    background: var(--code-bg);
+    color: #cdd6f4;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88em;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .keyword { color: #cba6f7; }
+  .string  { color: #a6e3a1; }
+  .comment { color: #6c7086; font-style: italic; }
+  .number  { color: #fab387; }
+  .func    { color: #89dceb; }
+  .note {
+    background: #e8f4fd;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 0.92em;
+    color: #1a3a5c;
+  }
+  .tasks {
+    background: var(--task-bg);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-top: 20px;
+    border: 1px solid #f0d9c8;
+  }
+  .tasks h3 {
+    color: var(--task-border);
+    border-left-color: var(--task-border);
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 10px 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #f0d9c8;
+    font-size: 0.93em;
+  }
+  .task-num {
+    background: var(--task-border);
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.85em;
+  }
+  .combined-task {
+    background: linear-gradient(135deg, #1F4E79 0%, #2E75B6 100%);
+    margin: 16px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(31,78,121,0.2);
+  }
+  .combined-task .section-header {
+    background: linear-gradient(90deg, #8B0000, #c0392b);
+  }
+  .combined-task .section-body { background: white; }
+  .combo-task {
+    border-left: 4px solid #c0392b;
+    padding: 14px 16px;
+    background: #fff8f0;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+  }
+  .combo-task h4 { color: #8B0000; margin-bottom: 8px; font-size: 1em; }
+  .combo-task p { color: #444; font-size: 0.92em; }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .tag {
+    background: #1F4E79;
+    color: white;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.75em;
+  }
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: #888;
+    font-size: 0.9em;
+  }
+  footer strong { color: var(--blue); }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.6em; }
+    pre { font-size: 0.82em; }
+    .section-body { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🐍 Python для начинающих</h1>
+  <p>Синтаксис и семантика · Объяснения, примеры и задачи</p>
+</div>
+
+<div class="toc">
+  <h2>📚 Содержание</h2>
+  <a href="#topic1">1. Типы данных</a>
+  <a href="#topic2">2. Работа с файлами</a>
+  <a href="#topic3">3. Словари (dict)</a>
+  <a href="#topic4">4. Аргументы командной строки (sys.argv)</a>
+  <a href="#topic5">5. Множества (set)</a>
+  <a href="#topic6">6. Работа со строками</a>
+  <a href="#combined">⚡ Комплексные задачи</a>
+</div>
+
+<!-- ===================== TOPIC 1 ===================== -->
+<div class="section" id="topic1">
+  <div class="section-header"><h2>1. Типы данных в Python</h2></div>
+  <div class="section-body">
+    <p>Python имеет несколько встроенных типов данных. Каждый тип предназначен для хранения определённого вида информации.</p>
+
+    <h3>int — целые числа</h3>
+    <pre><span class="comment"># Целые числа</span>
+x = <span class="number">42</span>
+y = <span class="number">-7</span>
+<span class="func">print</span>(<span class="func">type</span>(x))  <span class="comment"># &lt;class 'int'&gt;</span></pre>
+
+    <h3>float — числа с плавающей точкой</h3>
+    <pre>pi = <span class="number">3.14159</span>
+temperature = <span class="number">-0.5</span>
+<span class="func">print</span>(<span class="func">type</span>(pi))  <span class="comment"># &lt;class 'float'&gt;</span></pre>
+
+    <h3>str — строки</h3>
+    <pre>name = <span class="string">'Алексей'</span>
+greeting = <span class="string">"Привет, мир!"</span>
+<span class="func">print</span>(<span class="func">type</span>(name))  <span class="comment"># &lt;class 'str'&gt;</span></pre>
+
+    <h3>bool — логический тип</h3>
+    <pre>is_student = <span class="keyword">True</span>
+has_car = <span class="keyword">False</span>
+<span class="func">print</span>(<span class="func">type</span>(is_student))  <span class="comment"># &lt;class 'bool'&gt;</span></pre>
+
+    <h3>list — список (изменяемый)</h3>
+    <pre>fruits = [<span class="string">'яблоко'</span>, <span class="string">'банан'</span>, <span class="string">'апельсин'</span>]
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<span class="func">print</span>(<span class="func">type</span>(fruits))  <span class="comment"># &lt;class 'list'&gt;</span></pre>
+
+    <h3>tuple — кортеж (неизменяемый)</h3>
+    <pre>coordinates = (<span class="number">10</span>, <span class="number">20</span>)
+colors = (<span class="string">'красный'</span>, <span class="string">'зелёный'</span>, <span class="string">'синий'</span>)
+<span class="func">print</span>(<span class="func">type</span>(coordinates))  <span class="comment"># &lt;class 'tuple'&gt;</span></pre>
+
+    <h3>dict — словарь</h3>
+    <pre>person = {<span class="string">'имя'</span>: <span class="string">'Иван'</span>, <span class="string">'возраст'</span>: <span class="number">25</span>}
+<span class="func">print</span>(<span class="func">type</span>(person))  <span class="comment"># &lt;class 'dict'&gt;</span></pre>
+
+    <h3>set — множество (уникальные элементы)</h3>
+    <pre>unique = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>}
+<span class="func">print</span>(unique)   <span class="comment"># {1, 2, 3}</span>
+<span class="func">print</span>(<span class="func">type</span>(unique))  <span class="comment"># &lt;class 'set'&gt;</span></pre>
+
+    <h3>Функция type()</h3>
+    <pre><span class="func">print</span>(<span class="func">type</span>(<span class="number">42</span>))        <span class="comment"># &lt;class 'int'&gt;</span>
+<span class="func">print</span>(<span class="func">type</span>(<span class="number">3.14</span>))      <span class="comment"># &lt;class 'float'&gt;</span>
+<span class="func">print</span>(<span class="func">type</span>(<span class="string">'hello'</span>))  <span class="comment"># &lt;class 'str'&gt;</span>
+<span class="func">print</span>(<span class="func">type</span>(<span class="keyword">True</span>))      <span class="comment"># &lt;class 'bool'&gt;</span></pre>
+
+    <h3>Полный пример (задание ex00)</h3>
+    <pre><span class="keyword">def</span> <span class="func">data_types</span>():
+    a = <span class="number">10</span>
+    b = <span class="string">'hello'</span>
+    c = <span class="number">3.14</span>
+    d = <span class="keyword">True</span>
+    e = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+    f = {<span class="string">'key'</span>: <span class="string">'val'</span>}
+    g = (<span class="number">1</span>, <span class="number">2</span>)
+    h = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>}
+    <span class="func">print</span>([<span class="func">type</span>(a), <span class="func">type</span>(b), <span class="func">type</span>(c), <span class="func">type</span>(d),
+           <span class="func">type</span>(e), <span class="func">type</span>(f), <span class="func">type</span>(g), <span class="func">type</span>(h)])
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    data_types()</pre>
+
+    <div class="tasks">
+      <h3>🏋️ Задачи</h3>
+      <div class="task-item"><div class="task-num">1</div><div>Создайте переменные каждого из 8 типов. Выведите их значения и типы в одной строке через запятую.</div></div>
+      <div class="task-item"><div class="task-num">2</div><div>Напишите функцию, которая принимает любое значение и печатает: «Это число», «Это строка» или «Другой тип».</div></div>
+      <div class="task-item"><div class="task-num">3</div><div>Создайте список из 5 элементов разных типов. Выведите тип каждого элемента в цикле.</div></div>
+      <div class="task-item"><div class="task-num">4</div><div>Напишите функцию <code>count_types(lst)</code>, которая принимает список и возвращает словарь {тип: количество}.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOPIC 2 ===================== -->
+<div class="section" id="topic2">
+  <div class="section-header"><h2>2. Работа с файлами</h2></div>
+  <div class="section-body">
+    <p>Python позволяет легко читать и записывать файлы. Основная функция — <code>open()</code>.</p>
+
+    <h3>Режимы открытия файла</h3>
+    <pre><span class="string">'r'</span>   <span class="comment"># чтение (файл должен существовать)</span>
+<span class="string">'w'</span>   <span class="comment"># запись (создаёт или перезаписывает)</span>
+<span class="string">'a'</span>   <span class="comment"># дозапись в конец</span>
+<span class="string">'r+'</span>  <span class="comment"># чтение и запись</span></pre>
+
+    <h3>Конструкция with open() — правильный способ</h3>
+    <pre><span class="keyword">with</span> <span class="func">open</span>(<span class="string">'file.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    content = f.read()
+    <span class="func">print</span>(content)
+<span class="comment"># Файл закрывается автоматически!</span></pre>
+    <div class="note">💡 Конструкция <code>with</code> автоматически закрывает файл, даже если возникла ошибка.</div>
+
+    <h3>Чтение файла</h3>
+    <pre><span class="comment"># Весь файл сразу</span>
+<span class="keyword">with</span> <span class="func">open</span>(<span class="string">'data.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    text = f.read()
+
+<span class="comment"># Построчно — readlines()</span>
+<span class="keyword">with</span> <span class="func">open</span>(<span class="string">'data.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    lines = f.readlines()  <span class="comment"># список строк</span>
+    <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+        <span class="func">print</span>(line.strip())  <span class="comment"># убираем \n</span></pre>
+
+    <h3>Запись в файл</h3>
+    <pre><span class="keyword">with</span> <span class="func">open</span>(<span class="string">'result.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:
+    f.write(<span class="string">'Первая строка\n'</span>)
+    f.write(<span class="string">'Вторая строка\n'</span>)</pre>
+
+    <h3>Пример: CSV → TSV (задание ex01)</h3>
+    <pre><span class="keyword">def</span> <span class="func">convert_csv_to_tsv</span>():
+    <span class="keyword">with</span> <span class="func">open</span>(<span class="string">'data.csv'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> csv_file:
+        <span class="keyword">with</span> <span class="func">open</span>(<span class="string">'data.tsv'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> tsv_file:
+            <span class="keyword">for</span> line <span class="keyword">in</span> csv_file:
+                parts = []
+                in_quotes = <span class="keyword">False</span>
+                current = <span class="string">''</span>
+                <span class="keyword">for</span> char <span class="keyword">in</span> line:
+                    <span class="keyword">if</span> char == <span class="string">'"'</span>:
+                        in_quotes = <span class="keyword">not</span> in_quotes
+                    <span class="keyword">elif</span> char == <span class="string">','</span> <span class="keyword">and not</span> in_quotes:
+                        parts.append(current)
+                        current = <span class="string">''</span>
+                        <span class="keyword">continue</span>
+                    current += char
+                parts.append(current)
+                tsv_file.write(<span class="string">'\t'</span>.join(parts))</pre>
+
+    <div class="tasks">
+      <h3>🏋️ Задачи</h3>
+      <div class="task-item"><div class="task-num">1</div><div>Напишите функцию, которая создаёт файл <code>numbers.txt</code> и записывает числа от 1 до 10, каждое на новой строке.</div></div>
+      <div class="task-item"><div class="task-num">2</div><div>Напишите функцию, которая читает файл <code>numbers.txt</code> и выводит сумму всех чисел.</div></div>
+      <div class="task-item"><div class="task-num">3</div><div>Напишите функцию, которая читает файл и считает количество строк, слов и символов.</div></div>
+      <div class="task-item"><div class="task-num">4</div><div>Напишите программу, которая читает файл и записывает его содержимое в новый файл в верхнем регистре (<code>.upper()</code>).</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOPIC 3 ===================== -->
+<div class="section" id="topic3">
+  <div class="section-header"><h2>3. Словари (dict)</h2></div>
+  <div class="section-body">
+    <p>Словарь хранит пары ключ: значение. Ключи должны быть уникальными.</p>
+
+    <h3>Создание и доступ</h3>
+    <pre>person = {
+    <span class="string">'имя'</span>: <span class="string">'Иван'</span>,
+    <span class="string">'возраст'</span>: <span class="number">25</span>,
+    <span class="string">'город'</span>: <span class="string">'Москва'</span>
+}
+<span class="func">print</span>(person[<span class="string">'имя'</span>])      <span class="comment"># Иван</span>
+<span class="func">print</span>(person.get(<span class="string">'страна'</span>, <span class="string">'РФ'</span>))  <span class="comment"># РФ (значение по умолчанию)</span></pre>
+
+    <h3>Перебор словаря</h3>
+    <pre><span class="keyword">for</span> key, value <span class="keyword">in</span> person.items():
+    <span class="func">print</span>(f<span class="string">'{key}: {value}'</span>)</pre>
+
+    <h3>Проверка наличия ключа</h3>
+    <pre><span class="keyword">if</span> <span class="string">'имя'</span> <span class="keyword">in</span> person:
+    <span class="func">print</span>(<span class="string">'Ключ существует'</span>)
+
+<span class="keyword">if</span> <span class="string">'телефон'</span> <span class="keyword">not in</span> person:
+    <span class="func">print</span>(<span class="string">'Телефон не найден'</span>)</pre>
+
+    <h3>Словарь из списка кортежей</h3>
+    <pre>data = [(<span class="string">'Россия'</span>, <span class="string">'25'</span>), (<span class="string">'Франция'</span>, <span class="string">'132'</span>), (<span class="string">'Германия'</span>, <span class="string">'132'</span>)]
+result = {}
+<span class="keyword">for</span> country, number <span class="keyword">in</span> data:
+    <span class="keyword">if</span> number <span class="keyword">not in</span> result:
+        result[number] = []
+    result[number].append(country)
+
+<span class="keyword">for</span> key, values <span class="keyword">in</span> result.items():
+    <span class="keyword">for</span> val <span class="keyword">in</span> values:
+        <span class="func">print</span>(f<span class="string">'{key!r} : {val!r}'</span>)</pre>
+
+    <h3>Сортировка словаря</h3>
+    <pre>data = {<span class="string">'США'</span>: <span class="number">610</span>, <span class="string">'Испания'</span>: <span class="number">178</span>, <span class="string">'Франция'</span>: <span class="number">132</span>, <span class="string">'Германия'</span>: <span class="number">132</span>}
+
+sorted_items = <span class="func">sorted</span>(
+    data.items(),
+    key=<span class="keyword">lambda</span> x: (-x[<span class="number">1</span>], x[<span class="number">0</span>])  <span class="comment"># убывание по числу, возрастание по имени</span>
+)
+<span class="keyword">for</span> country, _ <span class="keyword">in</span> sorted_items:
+    <span class="func">print</span>(country)</pre>
+
+    <div class="tasks">
+      <h3>🏋️ Задачи</h3>
+      <div class="task-item"><div class="task-num">1</div><div>Создайте словарь с информацией о 3 студентах (имя: оценка). Найдите имя с максимальной оценкой.</div></div>
+      <div class="task-item"><div class="task-num">2</div><div>Напишите функцию, которая принимает список слов и возвращает словарь {слово: количество_вхождений}.</div></div>
+      <div class="task-item"><div class="task-num">3</div><div>Дан словарь {'a': 1, 'b': 2, 'c': 3}. Создайте новый словарь, где ключи и значения поменяны местами.</div></div>
+      <div class="task-item"><div class="task-num">4</div><div>Напишите функцию, которая принимает два словаря и возвращает словарь с ключами, которые есть в обоих.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOPIC 4 ===================== -->
+<div class="section" id="topic4">
+  <div class="section-header"><h2>4. Аргументы командной строки — sys.argv</h2></div>
+  <div class="section-body">
+    <p>Модуль <code>sys</code> позволяет получать аргументы, переданные скрипту при запуске.</p>
+
+    <h3>Как работает sys.argv</h3>
+    <pre><span class="keyword">import</span> sys
+
+<span class="comment"># Запуск: python3 script.py hello world</span>
+<span class="comment"># sys.argv = ['script.py', 'hello', 'world']</span>
+
+<span class="func">print</span>(sys.argv[<span class="number">0</span>])   <span class="comment"># script.py</span>
+<span class="func">print</span>(sys.argv[<span class="number">1</span>])   <span class="comment"># hello</span>
+<span class="func">print</span>(sys.argv[<span class="number">2</span>])   <span class="comment"># world</span>
+<span class="func">print</span>(<span class="func">len</span>(sys.argv)) <span class="comment"># 3</span></pre>
+
+    <h3>Проверка количества аргументов</h3>
+    <pre><span class="keyword">import</span> sys
+
+<span class="keyword">def</span> <span class="func">main</span>():
+    <span class="keyword">if</span> <span class="func">len</span>(sys.argv) != <span class="number">2</span>:
+        <span class="func">print</span>(<span class="string">'Нужен ровно 1 аргумент'</span>)
+        <span class="keyword">return</span>
+    arg = sys.argv[<span class="number">1</span>]
+    <span class="func">print</span>(f<span class="string">'Аргумент: {arg}'</span>)
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    main()</pre>
+
+    <h3>Вызов исключений</h3>
+    <pre><span class="comment"># Вызов исключения с сообщением</span>
+<span class="keyword">if</span> <span class="func">len</span>(sys.argv) != <span class="number">2</span>:
+    <span class="keyword">raise</span> <span class="func">Exception</span>(<span class="string">'Неверное число аргументов!'</span>)
+
+<span class="comment"># Другой пример:</span>
+<span class="keyword">raise</span> <span class="func">Exception</span>(<span class="string">'The script does not support your language yet.'</span>)</pre>
+
+    <h3>Преобразование аргументов</h3>
+    <pre><span class="comment"># Аргументы всегда строки! Для числа нужно int()</span>
+shift = <span class="func">int</span>(sys.argv[<span class="number">3</span>])  <span class="comment"># '12' → 12</span></pre>
+
+    <div class="tasks">
+      <h3>🏋️ Задачи</h3>
+      <div class="task-item"><div class="task-num">1</div><div>Напишите скрипт, принимающий 2 числа как аргументы и выводящий их сумму. Если аргументов не 2 — ошибка.</div></div>
+      <div class="task-item"><div class="task-num">2</div><div>Напишите скрипт, принимающий имя файла как аргумент и выводящий количество строк в нём.</div></div>
+      <div class="task-item"><div class="task-num">3</div><div>Скрипт с аргументом 'encode' или 'decode' и строкой. encode → верхний регистр, decode → нижний. Иначе — исключение.</div></div>
+      <div class="task-item"><div class="task-num">4</div><div>Скрипт принимает список слов через запятую как аргумент. Выводит каждое слово с его длиной. Если нет — ничего.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOPIC 5 ===================== -->
+<div class="section" id="topic5">
+  <div class="section-header"><h2>5. Множества (set)</h2></div>
+  <div class="section-body">
+    <p>Множество — коллекция уникальных элементов без определённого порядка. Идеально для математических операций.</p>
+
+    <h3>Создание множества</h3>
+    <pre><span class="comment"># Из списка — дубликаты удаляются</span>
+emails = [<span class="string">'a@b.com'</span>, <span class="string">'c@d.com'</span>, <span class="string">'a@b.com'</span>]
+unique = <span class="func">set</span>(emails)
+<span class="func">print</span>(unique)  <span class="comment"># {'a@b.com', 'c@d.com'}</span>
+
+<span class="comment"># Напрямую</span>
+s = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>}</pre>
+
+    <h3>Разность A - B (есть в A, нет в B)</h3>
+    <pre>clients = {<span class="string">'ivan@mail.ru'</span>, <span class="string">'anna@mail.ru'</span>, <span class="string">'petr@mail.ru'</span>}
+recipients = {<span class="string">'ivan@mail.ru'</span>, <span class="string">'anna@mail.ru'</span>}
+
+not_received = clients - recipients
+<span class="func">print</span>(not_received)  <span class="comment"># {'petr@mail.ru'}</span></pre>
+
+    <h3>Пересечение A & B (есть в обоих)</h3>
+    <pre>clients = {<span class="string">'ivan@mail.ru'</span>, <span class="string">'anna@mail.ru'</span>}
+participants = {<span class="string">'anna@mail.ru'</span>, <span class="string">'new@mail.ru'</span>}
+
+both = clients & participants
+<span class="func">print</span>(both)  <span class="comment"># {'anna@mail.ru'}</span></pre>
+
+    <h3>Объединение A | B</h3>
+    <pre>all_emails = clients | participants
+<span class="func">print</span>(all_emails)  <span class="comment"># {'ivan@mail.ru', 'anna@mail.ru', 'new@mail.ru'}</span></pre>
+
+    <h3>Пример из задания ex07</h3>
+    <pre>clients = [<span class="string">'andrew@gmail.com'</span>, <span class="string">'jessica@gmail.com'</span>, <span class="string">'ted@mosby.com'</span>]
+participants = [<span class="string">'walter@heisenberg.com'</span>, <span class="string">'jessica@gmail.com'</span>]
+recipients = [<span class="string">'andrew@gmail.com'</span>, <span class="string">'jessica@gmail.com'</span>]
+
+<span class="comment"># 1. Клиенты без письма → колл-центр</span>
+call_center = <span class="func">set</span>(clients) - <span class="func">set</span>(recipients)
+
+<span class="comment"># 2. Участники, не клиенты</span>
+potential = <span class="func">set</span>(participants) - <span class="func">set</span>(clients)
+
+<span class="comment"># 3. Клиенты без участия в событии</span>
+loyalty = <span class="func">set</span>(clients) - <span class="func">set</span>(participants)</pre>
+
+    <div class="tasks">
+      <h3>🏋️ Задачи</h3>
+      <div class="task-item"><div class="task-num">1</div><div>Даны два списка чисел. Найдите числа, которые есть в обоих списках (пересечение).</div></div>
+      <div class="task-item"><div class="task-num">2</div><div>Даны два списка слов. Найдите слова, которые есть только в первом, но не во втором.</div></div>
+      <div class="task-item"><div class="task-num">3</div><div>Напишите функцию, которая принимает список и возвращает список без дубликатов (используя set).</div></div>
+      <div class="task-item"><div class="task-num">4</div><div>Даны три списка email. Найдите адреса, которые есть хотя бы в двух из трёх списков.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOPIC 6 ===================== -->
+<div class="section" id="topic6">
+  <div class="section-header"><h2>6. Работа со строками</h2></div>
+  <div class="section-body">
+    <p>Строки в Python очень мощные. Они поддерживают десятки методов.</p>
+
+    <h3>Основные методы строк</h3>
+    <pre>s = <span class="string">'  Привет, Мир!  '</span>
+
+s.strip()                    <span class="comment"># 'Привет, Мир!'</span>
+s.lower()                    <span class="comment"># 'привет, мир!'</span>
+s.upper()                    <span class="comment"># 'ПРИВЕТ, МИР!'</span>
+s.capitalize()               <span class="comment"># 'Привет, мир!'</span>
+s.split(<span class="string">','</span>)                 <span class="comment"># ['  Привет', ' Мир!  ']</span>
+s.replace(<span class="string">'Мир'</span>, <span class="string">'Python'</span>)  <span class="comment"># замена</span>
+s.isalpha()                  <span class="comment"># True/False — только буквы</span>
+s.isdigit()                  <span class="comment"># True/False — только цифры</span>
+s.isascii()                  <span class="comment"># True/False — только ASCII</span></pre>
+
+    <h3>f-строки (используйте вместо .format()!)</h3>
+    <pre>name = <span class="string">'Иван'</span>
+age = <span class="number">25</span>
+
+<span class="func">print</span>(f<span class="string">'Меня зовут {name}, мне {age} лет.'</span>)
+<span class="func">print</span>(f<span class="string">'Через 5 лет мне будет {age + <span class="number">5</span>} лет.'</span>)
+
+price = <span class="number">1234.567</span>
+<span class="func">print</span>(f<span class="string">'Цена: {price:.2f} руб.'</span>)  <span class="comment"># 1234.57</span></pre>
+    <div class="note">💡 f-строки быстрее и удобнее. Конструкция <code>'...{}'.format(x)</code> — запрещена в ex08!</div>
+
+    <h3>Разбивка email (задание ex08)</h3>
+    <pre>email = <span class="string">'ivan.petrov@corp.com'</span>
+
+local = email.split(<span class="string">'@'</span>)[<span class="number">0</span>]    <span class="comment"># 'ivan.petrov'</span>
+parts = local.split(<span class="string">'.'</span>)        <span class="comment"># ['ivan', 'petrov']</span>
+
+first = parts[<span class="number">0</span>].capitalize()  <span class="comment"># 'Ivan'</span>
+last  = parts[<span class="number">1</span>].capitalize()  <span class="comment"># 'Petrov'</span>
+
+<span class="func">print</span>(f<span class="string">'{first}\t{last}\t{email}'</span>)</pre>
+
+    <h3>Шифр Цезаря — ord() и chr()</h3>
+    <pre><span class="func">print</span>(<span class="func">ord</span>(<span class="string">'a'</span>))  <span class="comment"># 97</span>
+<span class="func">print</span>(<span class="func">ord</span>(<span class="string">'z'</span>))  <span class="comment"># 122</span>
+<span class="func">print</span>(<span class="func">ord</span>(<span class="string">'A'</span>))  <span class="comment"># 65</span>
+<span class="func">print</span>(<span class="func">chr</span>(<span class="number">97</span>))   <span class="comment"># 'a'</span>
+
+<span class="keyword">def</span> <span class="func">shift_char</span>(c, shift):
+    <span class="keyword">if</span> c.islower():
+        <span class="keyword">return</span> <span class="func">chr</span>((<span class="func">ord</span>(c) - <span class="func">ord</span>(<span class="string">'a'</span>) + shift) % <span class="number">26</span> + <span class="func">ord</span>(<span class="string">'a'</span>))
+    <span class="keyword">elif</span> c.isupper():
+        <span class="keyword">return</span> <span class="func">chr</span>((<span class="func">ord</span>(c) - <span class="func">ord</span>(<span class="string">'A'</span>) + shift) % <span class="number">26</span> + <span class="func">ord</span>(<span class="string">'A'</span>))
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> c  <span class="comment"># цифры, пробелы, символы — без изменений</span></pre>
+
+    <div class="tasks">
+      <h3>🏋️ Задачи</h3>
+      <div class="task-item"><div class="task-num">1</div><div>Напишите функцию, принимающую полное имя ('иван петров') и возвращающую 'Петров Иван' (фамилия вперёд).</div></div>
+      <div class="task-item"><div class="task-num">2</div><div>Проверьте, является ли строка палиндромом (читается одинаково в обе стороны). Игнорируйте регистр.</div></div>
+      <div class="task-item"><div class="task-num">3</div><div>Принимает email вида name.surname@corp.com и возвращает словарь {'имя': ..., 'фамилия': ..., 'email': ...}.</div></div>
+      <div class="task-item"><div class="task-num">4</div><div>Реализуйте шифр Цезаря: функция caesar(text, shift, mode) шифрует или дешифрует строку. Нелатинские символы не трогать.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== COMBINED TASKS ===================== -->
+<div class="combined-task" id="combined">
+  <div class="section-header" style="background: linear-gradient(90deg, #8B0000, #c0392b);">
+    <h2>⚡ Комплексные задачи (все темы)</h2>
+  </div>
+  <div class="section-body">
+    <p>Эти задачи требуют применения всех изученных тем одновременно.</p>
+
+    <div class="combo-task">
+      <h4>Задача 1: Анализ журнала регистраций</h4>
+      <p>Создайте скрипт <code>analyze.py</code>, принимающий имя файла как аргумент. Файл содержит строки вида <code>email,имя,дата</code>. Скрипт должен:</p>
+      <p>1) Прочитать файл и построить словарь {email: {'имя': ..., 'дата': ...}}<br>
+      2) Вывести уникальные даты (используя set)<br>
+      3) Найти первого зарегистрировавшегося пользователя<br>
+      4) Сохранить отчёт в <code>report.tsv</code> с f-строками</p>
+      <div class="tags">
+        <span class="tag">файлы</span>
+        <span class="tag">словари</span>
+        <span class="tag">множества</span>
+        <span class="tag">sys.argv</span>
+        <span class="tag">f-строки</span>
+        <span class="tag">типы данных</span>
+      </div>
+    </div>
+
+    <div class="combo-task">
+      <h4>Задача 2: Система учёта сотрудников</h4>
+      <p>Создайте скрипт <code>staff.py</code> с тремя командами:</p>
+      <p><code>python3 staff.py add 'Иван Петров' ivan@corp.com</code> — добавить<br>
+      <code>python3 staff.py find ivan@corp.com</code> — найти<br>
+      <code>python3 staff.py report</code> — вывести всех, отсортировав по фамилии</p>
+      <p>Данные хранить в файле. Использовать set для проверки дубликатов email.</p>
+      <div class="tags">
+        <span class="tag">файлы</span>
+        <span class="tag">словари</span>
+        <span class="tag">множества</span>
+        <span class="tag">строки</span>
+        <span class="tag">sys.argv</span>
+        <span class="tag">сортировка</span>
+      </div>
+    </div>
+
+    <div class="combo-task">
+      <h4>Задача 3: Шифровщик файлов</h4>
+      <p>Создайте скрипт <code>file_cipher.py</code>:</p>
+      <p><code>python3 file_cipher.py encode input.txt output.txt 7</code><br>
+      <code>python3 file_cipher.py decode output.txt decoded.txt 7</code></p>
+      <p>Читать файл построчно, применять шифр Цезаря. Если символ кириллический — исключение. В конце выводить статистику {тип символа: количество}.</p>
+      <div class="tags">
+        <span class="tag">файлы</span>
+        <span class="tag">строки</span>
+        <span class="tag">словари</span>
+        <span class="tag">множества</span>
+        <span class="tag">sys.argv</span>
+        <span class="tag">исключения</span>
+        <span class="tag">Caesar cipher</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>🐍 Python для начинающих</strong><br>
+  Удачи в решении задач! Помни: лучший способ научиться — это практика.
+</footer>
+
+</body>
+</html>
