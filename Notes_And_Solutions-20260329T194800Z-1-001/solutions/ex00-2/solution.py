@@ -1,5 +1,6 @@
 import sys
 import ast
+
 class TypeMatrix:
 
     def __init__(self, data):
@@ -8,24 +9,22 @@ class TypeMatrix:
 
     def type_grid(self):
         new_data = []
-        index_counter = 0
         for lists in self.data:
             new_data.append(lists)
-    
-        for changed_lists in new_data:
-            
-            for list_elements in changed_lists:
-                try:
+        
+        for row in new_data:
+            for index, item in enumerate(row):
+                if isinstance(item, str):
+                            try:
+                                parsed = ast.literal_eval(item)
+                                item_type = type(parsed).__name__
+                            except:
+                                item_type = "str"
+                else:
+                            item_type = type(item).__name__
 
-                    changed_lists[index_counter] = type(ast.literal_eval(list_elements)).__name__ 
-            
-                except:
-                    changed_lists[index_counter] = "string"
-            index_counter = index_counter + 1
-
-
-        return new_data  
-                    
+                row[index] = item_type
+     
     
     def most_common_type():
         pass    
@@ -38,7 +37,7 @@ data = [
 ]
 
 
-object = TypeMatrix(data)
+matrix = TypeMatrix(data)
 
-print(object.type_grid())
+print(matrix.type_grid())
 

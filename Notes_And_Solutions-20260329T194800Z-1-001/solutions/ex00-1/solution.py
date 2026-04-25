@@ -16,6 +16,6 @@ else:
            data_type = type(data).__name__ 
            data_types_dict[data_type] = data_types_dict.get(data_type, 0) +  1
         except:
-            data_types_dict[data] = "string" + 1
+            data_types_dict['string'] = data_types_dict.get('string', 0) + 1 
     print(data_types_dict)
       
