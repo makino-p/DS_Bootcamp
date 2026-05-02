@@ -194,15 +194,15 @@ import math
 
 
 
-word_descrpt = {
-    'apple': 'fruit for eat',
-    'cooffee': 'energetic drink for being active',
-    'tea': 'medium taste drink for being relaxed',
-    'vscode': 'universal code editor for creating projects',
-    'mouse':'device for managing and using laptop or pc '
-}
-for i in word_descrpt:
-    print(sorted(i))
+# word_descrpt = {
+#     'apple': 'fruit for eat',
+#     'cooffee': 'energetic drink for being active',
+#     'tea': 'medium taste drink for being relaxed',
+#     'vscode': 'universal code editor for creating projects',
+#     'mouse':'device for managing and using laptop or pc '
+# }
+# for i in word_descrpt:
+#     print(sorted(i))
 
 
 
@@ -298,3 +298,67 @@ for i in word_descrpt:
 #             print(f"{prodct.capitalize()} does not exist!")
 
 
+
+# def counter(name, age, current_year=2026):
+#     y_of_born=current_year-age
+#     print(f"{name.title()}: Age:{age}, Year of born:{y_of_born}")
+
+
+# name = input("What's your name?")
+# age = int(input("How old are you?"))
+
+# counter(name, age)
+
+
+# def calc(number):
+#     print(f"{number**2}, {number**3}")
+
+# number=int(input("Enter any number: "))
+# calc(number)
+
+
+# def analitic(number):
+#     if number >=0:
+#        print(f"{number} Positive")
+#     else:
+#         print(f"{number} Negative")
+
+# number=int(input("Enter numb: "))
+# analitic(number)
+
+
+# def odd_even(number):
+#     if number%2==0:
+#         print(f"{number} is even!")
+#     else:
+#         print(f"{number} is odd!")
+
+# number=int(input("Enter numb: "))
+
+# odd_even(number)
+
+
+# def max_min(f_num, s_num):
+#     if f_num>s_num:
+#         print(f"{f_num} is max")
+#     elif f_num<s_num:
+#         print(f"{s_num} is max")
+#     else:
+#         print("They are equal!")
+
+# f_number=int(input("Enter numb: "))
+# s_number=int(input("Enter numb: "))
+
+# max_min(f_number, s_number)
+
+
+# def delitel(number):
+#     for x in range(2, 11):
+#         if number%x==0:
+#             print(x)
+#         else:
+#             continue
+
+# number=int(input("Enter numb: "))
+
+# delitel(number)
