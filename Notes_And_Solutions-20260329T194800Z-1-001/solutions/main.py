@@ -333,7 +333,7 @@ import math
 #     else:
 #         print(f"{number} is odd!")
 
-# number=int(input("Enter numb: "))
+# number=int(inpu t("Enter numb: "))
 
 # odd_even(number)
 
@@ -362,3 +362,129 @@ import math
 # number=int(input("Enter numb: "))
 
 # delitel(number)
+
+
+
+# def personal_i(ismi, familiyasi, tugilgan_yili, tugilgan_joyi, email_manzili=None,  telefon_raqamini=None, current_year = 2026):
+#     age = int(current_year-tugilgan_yili)
+    
+#     data = {
+        
+#         'ism':ismi,
+#         'familiya':familiyasi,
+#         'year_b':tugilgan_yili,
+#         'place_b':tugilgan_joyi,
+#         'email':email_manzili,
+#         'phone':telefon_raqamini,
+#         'age':age
+#     }
+#     if  data['email'] and data['phone']:
+#         f_data = f"{data['ism']} {data['familiya']} {data['year_b']} {data['place_b']} {data['email']} {data['phone']} {data['age']}"
+#     else:
+#         f_data = f"{data['ism']} {data['familiya']} {data['year_b']} {data['place_b']} {data['age']}"
+    
+
+#     return f_data
+# personal_info_list=[]
+# while True:
+#         flag = input("Do you want to continue or not: ")
+#         if flag=='y':
+#             name = input("Enter name: ")
+#             surname = input("Enter surname: ")
+#             year_of_bith = int(input("Enter yearth of birth:  "))
+#             place_of_birth = input("Enter place of birth: ")
+#             email = input("Enter email:  ")
+#             phone_number = input("Enter phone number: ")
+#             final = personal_i(name, surname, year_of_bith, place_of_birth, email, phone_number)
+#             personal_info_list.append(final)
+#         else:
+#             break
+
+# print(personal_info_list)
+
+
+# def find_m(numbers):
+#     max_ = max(numbers)
+#     return max_
+
+# numbers = []
+# for i in range(3):
+#     i = int(input("Enter number: "))
+#     numbers.append(i)
+
+# result =  find_m(numbers)
+# print(result)
+
+
+# def round(radius, pi=3.14):
+#     diametr = radius * 2
+#     lenth = 2 * pi * radius
+#     square = pi * (radius**2)
+
+#     return diametr, lenth, square, radius
+
+
+# while True:
+#      radius = input("Enter radius: ")
+#      if radius!='stop':
+#           radius = float(radius)
+#           result = round(radius)
+#           print(result)
+#      else:
+#           break
+
+
+# def period(start, end):
+#     numbers_list=[]
+#     for i in range(start, end):
+#        if i > 0 and i%2!=0:
+#            numbers_list.append(i)
+#        else:
+#            continue
+#     return numbers_list
+
+# start = int(input("Enter start number: "))
+# end = int(input("Enter end number: "))
+
+# result = period(start, end)
+# print(result)
+
+
+
+# def fibonachi(lenth):
+#     f_list = []
+#     for i in range(lenth):
+#         if i == 0 or i == 1:
+#             f_list.append(i)
+#         else:
+#             f_list.append(f_list[i-1]+f_list[i-2])    
+#     return f_list
+
+# result = fibonachi(30)
+# print(result)
+
+
+# def first_letter(matn):
+#     new_list = []
+#     for i in matn:
+#         new_list.append(i.capitalize())
+#     return new_list     
+
+# matn = ["text one", "text  two", "text three"]
+
+# result = first_letter(matn)
+# print(matn)
+# print(result)
+
+
+def first_letter_v2(matn):
+    while matn:
+        text = matn.pop()
+        matn.append(text.title())
+    return matn
+
+matn = ["text one", "text  two", "text three"]
+
+result = first_letter_v2(matn[:])
+print(matn)
+print(result)
